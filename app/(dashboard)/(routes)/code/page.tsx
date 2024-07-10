@@ -28,25 +28,10 @@ const CodePage = () => {
     const [messages, setMessages] = useState<OpenAI.ChatCompletionMessageParam[]>([
         // Below data is only for test purpose.
         { role: "user", content: "What's your name?" },
-        { role: "assistant", content: 
-        "```javascript\
-import React, { useState } from \'react\';\
-// ToggleButton component\
-const ToggleButton = () => {\
-  // useState hook to manage the toggle state\
-  const [isToggled, setIsToggled] = useState(false);\
-  // Function to handle the button click and toggle the state\
-  const handleToggle = () => {\
-    setIsToggled(!isToggled);\
-  };\
-  return (\
-    <button onClick={handleToggle}>\
-      {isToggled ? \'ON\' : \'OFF\'}\
-    </button>\
-  );\
-};\
-export default ToggleButton;\
-" }
+        {
+            role: "assistant",
+            content: "setImages([]); const response = await axios.post('/api/image', values); const urls = response.data.map((image: { url: string }) => image.url); setImages(urls);"
+        }
     ]);
 
     const form = useForm<z.infer<typeof formSchema>>({

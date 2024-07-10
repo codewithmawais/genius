@@ -26,8 +26,8 @@ const ConversationPage = () => {
     const router = useRouter();
     const [messages, setMessages] = useState<OpenAI.ChatCompletionMessageParam[]>([
         // Below data is only for test purpose.
-        // { role: "user", content: "What's your name?" },
-        // { role: "assistant", content: "Genius" }
+        { role: "user", content: "What's your name?" },
+        { role: "assistant", content: "Genius" }
     ]);
 
     const form = useForm<z.infer<typeof formSchema>>({
