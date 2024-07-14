@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
 
-import { checkApiLimit, incrementApiLimit } from "@/lib/api-limits";
+import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
 
 const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN!,
