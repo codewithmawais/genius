@@ -7,7 +7,7 @@ import { ImageIcon, Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import Heading from "@/components/heading";
@@ -18,11 +18,13 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 
 const ImagePage = () => {
     const router = useRouter();
+    const proModal = useProModal();
     const [images, setImages] = useState<string[]>([
         // Below data is only for test purpose.
         "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
@@ -51,8 +53,11 @@ const ImagePage = () => {
             setImages(urls);
             form.reset();
         } catch (error: any) {
-            // toast.error("Something went wrong.");
-            console.log("Something went wrong.", error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            } else {
+                toast.error("Something went wrong.");
+            }
         } finally {
             router.refresh();
         }

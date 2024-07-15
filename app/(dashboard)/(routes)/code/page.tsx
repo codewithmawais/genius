@@ -5,7 +5,7 @@ import axios from "axios";
 import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-// import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 import OpenAI from 'openai';
@@ -18,13 +18,15 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
-
-import { formSchema } from "./constants";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
+
+import { formSchema } from "./constants";
 
 const CodePage = () => {
     const router = useRouter();
+    const proModal = useProModal();
     const [messages, setMessages] = useState<OpenAI.ChatCompletionMessageParam[]>([
         // Below data is only for test purpose.
         { role: "user", content: "What's your name?" },
@@ -53,8 +55,11 @@ const CodePage = () => {
             
             form.reset();
         } catch (error: any) {
-            // toast.error("Something went wrong.");
-            console.log("Something went wrong.", error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            } else {
+                toast.error("Something went wrong.");
+            }
         } finally {
             router.refresh();
         }
