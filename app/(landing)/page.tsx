@@ -1,12 +1,13 @@
-import Link from "next/link";
+import { LandingNavbar } from "@/components/landing-navbar";
+import { LandingHero } from "@/components/landing-hero";
+import { LandingContent } from "@/components/landing-content";
 
  const LandingPage = () => {
     return (
-        <div>
-            LandingPage
-            <div>
-                <Link href="/sign-in"><button>Sign In</button></Link>
-            </div>
+        <div className="h-full ">
+            <LandingNavbar />
+            <LandingHero />
+            <LandingContent />
         </div>
     );
 };
