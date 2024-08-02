@@ -32,6 +32,7 @@ Welcome to Genius! Genius is an AI SaaS platform that offers five powerful AI to
 - **react-hook-form**: Form handling library for efficient form management.
 - **react-hot-toast**: Notification library for displaying alerts and messages.
 - **react-markdown**: Library for rendering Markdown in React components.
+- **openai**: The official TypeScript library for the OpenAI API.
 - **replicate**: Library for integrating Replicate AI models.
 - **stripe**: Library for integrating Stripe for payment processing.
 - **tailwind-merge**: Utility to merge Tailwind CSS classes efficiently.
